@@ -1,0 +1,41 @@
+﻿<div ng-controller="UWSRelatedContentAppController">
+   
+    <!--{{content}}-->
+    <umb-load-indicator ng-if="loading">
+    </umb-load-indicator>
+    <table class="table relations" ng-if="!loading">
+        <thead>
+            <tr>
+                <th class="objectTypeIcon">&nbsp;</th>
+                <th>Parent (clickable)</th>
+                <th class="directionIcon">&nbsp;</th>
+                <th>Related to (clickable)</th>
+                <th class="objectTypeIcon">Relation Type</th>
+                <!--<th>Created date</th>-->
+                <th>Comment/Fields</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="ReturnRelationModel in content track by $index">
+                <td class="Document">&nbsp;</td>
+                
+                <td><a href="" ng-click="openContentEditor(ReturnRelationModel.parentID)">{{ReturnRelationModel.parentName}}</a></td>
+                <td class="bidirectional">&nbsp;</td>
+                <td ng-show="ReturnRelationModel.relation.RelationType.Alias=='DocumentToMedia'"><a href="" ng-click="editItem(ReturnRelationModel.childID)">{{ReturnRelationModel.childName}}</a></td>
+                <!--<td ng-show="ReturnRelationModel.relation.RelationType.Alias=='DocumentToMedia'"><a href="/umbraco/#/media/media/edit/{{ReturnRelationModel.childID}}">{{ReturnRelationModel.childName}}</a></td>-->
+                <!--<td ng-show="ReturnRelationModel.relation.RelationType.Alias=='DocumentToDocument'"><a href="/umbraco/#/content/content/edit/{{ReturnRelationModel.childID}}">{{ReturnRelationModel.childName}}</a></td>-->
+                <td ng-show="ReturnRelationModel.relation.RelationType.Alias=='DocumentToDocument'"><a href="" ng-click="openContentEditor(ReturnRelationModel.childID)">{{ReturnRelationModel.childName}}</a></td>
+                <!--<td>{{ReturnRelationModel.relation.CreateDate}}</td>-->
+                <td class="Media"><span ng-show="ReturnRelationModel.relation.RelationType.Alias=='DocumentToMedia'">Media/Doc</span><span ng-show="ReturnRelationModel.relation.RelationType.Alias=='DocumentToDocument'">Page</span></td>
+                <td>
+                    <ul>
+                        <li ng-repeat="comment in ReturnRelationModel.comments track by $index">
+                            {{comment}}
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+</table>
+</div>
+
