@@ -1,0 +1,74 @@
+//----- SCHEDULED PUBLISH ------
+
+.date-wrapper {
+    display: flex;
+    flex-direction: row;
+    border-top: 1px solid @gray-10;
+    border-bottom: 1px solid @gray-10;
+}
+
+.date-wrapper__date {
+    padding: 10px;
+    flex: 1 1 50%;
+}
+
+.date-wrapper__date:last-of-type {
+    border-left: 1px solid @gray-10;
+}
+
+//------------------- HISTORY ------------------
+
+.history {
+    position: relative;
+}
+
+.history-line {
+    width: 2px;
+    height: 100%;
+    margin: 0 0 0 14px;
+    background-color: @gray-8;
+    position: absolute;
+}
+
+.history-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 24px;
+    position: relative;
+}
+
+.history-item__avatar {
+    margin-right: 7px;
+}
+
+.history-item__date {
+    font-size: 13px;
+    color: @gray-5;
+}
+
+.history-item__break {
+    display: flex;
+    align-items: center;
+    min-width: 230px;
+    font-size: 14px;
+}
+
+.history-item__badge {
+    margin-right: 5px;
+}
+
+/*  RESPONSIVE  */
+@media (min-width: 1101px) and (max-width: 1365px), (max-width: 979px) {
+    
+    .history-item {
+        display: block;
+    }
+
+    .history-item__break {
+        padding: 7px 0;
+    }
+
+    .history-line {
+        display: none;
+    }
+}
