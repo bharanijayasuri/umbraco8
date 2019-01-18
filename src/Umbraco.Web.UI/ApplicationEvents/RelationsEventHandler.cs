@@ -39,136 +39,7 @@ namespace UWS.Core.ApplicationEvents
 
     public class RelationsEventHandlerComponent : IComponent
     {
-        //Property aliases to look for media items
-
-        /*
-            previewImage
-            headerImage
-            headerVideoLoop
-            socialShareImage 	
-            relatedPages
-            headerVideoLoopSearch
-            campaignHeaderImage
-            newsPicker
-            headerArticle
-            customProfileImage
-            accreditations
-            promotedEvent
-            optionalCTAButton - uses Imulus URL Picker
-            headerCTA - uses Imulus URL Picker
-        */
-
-        /*
-
-        Blocks
-
-        Set A
-         pagePicker - urlpicker
-         backgroundImage
-         optionalBackgroundVideo
-         image
-         optionalLinks - urlpicker
-         text
-         optionalCTAButton - urlpicker
-         videoStartCard
-         videoRolloverPreview
-         button1Link - urlpicker
-         button2Link - urlpicker
-         link - urlpicker
-         image
-         video
-         sharedContentBlockPicker
-
-        Set B
-            image
-            imagePicker
-            optionalCTAButton - urlpicker
-            document
-            icon
-            viewAllLink - urlpicker
-            videoStartCard
-            videoRolloverPreview
-            pagePicker
-            buttonCTAlink - urlpicker
-            pageLinks - urlpicker
-
-
-        Set C
-            leftCTA - urlpicker
-            rightCTA - urlpicker
-            buttonCTA - urlpicker
-            pagePicker
-            ctaLink - urlpicker
-            newsButtonLink
-            eventsButtonLink
-            newsRoot
-            newsButtonLink
-            eventsRoot
-            eventsButtonLink
-            viewAllLink
-            pickStaffMembers - staff picker?
-
-            Event
-                leftCTA - urlpicker
-                rightCTA - urlpicker
-                buttonCTA - urlpicker
-                pagePicker
-                ctaLink - urlpicker
-                newsButtonLink
-                eventsButtonLink
-                pickStaffMembers - staff picker
-                viewAllLink - urlpicker
-            
-            Events
-                leftCTA - urlpicker
-                rightCTA - urlpicker
-                pagePicker
-                viewAllLink - urlpicker
-
-            NewsIndex
-                leftCTA - urlpicker
-                rightCTA - urlpicker
-                pagePicker
-
-            NewsItem
-                leftCTA - urlpicker
-                rightCTA - urlpicker
-                buttonCTA - urlpicker
-                pagePicker
-                newsButtonLink
-                eventsButtonLink
-                pickStaffMembers - staff picker? Multinode Treepicker
-                viewAllLink - urlpicker
-
-            Staffprofile
-                pickStaffMembers - staff picker?
-                viewAllLink - urlpicker
-                customProfileImage - Media Picker
-
-
-        Set D
-            optionalCTAButton - urlpicker
-            image
-            videoStartCard
-            videoRolloverPreview
-            button1Link - urlpicker
-            button2Link - urlpicker
-            pagePicker
-            optionalLinksColumn1 - urlpicker
-            backgroundImage
-            sharedContentBlockPicker - shared content picker? content picker
-            relatedCourses - course picker? Multinode  Treepicker
-            allCoursesLink - urlpicker
-            newsButtonLink
-            eventsButtonLink
-            buttonCTA - urlpicker
-
-            Settings
-            column2QuickLinks - urlpicker
-         */
-
-        /*"backgroundImage","optionalBackgroundVideo","image","text","videoStartCard","videoRolloverPreview","video","sharedContentBlockPicker","imagePicker","document","icon","pagePicker","newsButtonLink","eventsButtonLink","newsRoot","eventsRoot","viewAllLink","pickStaffMembers","pagePicker","relatedCourses"*/
-
+        
         private const string documentToMediaRelationTypeAlias = "DocumentToMedia";
         private const string documentToDocumentRelationTypeAlias = "DocumentToDocument";
 
@@ -242,13 +113,10 @@ namespace UWS.Core.ApplicationEvents
 
 
             return keyvaluepairs;
-            //return new List<string>() { "backgroundImage", "optionalBackgroundVideo", "image", "text", "videoStartCard", "videoRolloverPreview", "video", "sharedContentBlockPicker", "imagePicker", "document", "icon", "pagePicker", "newsButtonLink", "eventsButtonLink", "newsRoot", "eventsRoot", "viewAllLink", "pickStaffMembers", "pagePicker", "relatedCourses" };
+            
         }
 
-        //public void OnApplicationInitialized(UmbracoApplicationBase umbracoApplication, ApplicationContext applicationContext)
-        //{
-        //    //throw new NotImplementedException();
-        //}
+        
 
         public void Initialize()//This replaces the old OnApplicationStarted
         {
@@ -293,14 +161,6 @@ namespace UWS.Core.ApplicationEvents
             throw new NotImplementedException();
         }
 
-        //public void OnApplicationStarted(UmbracoApplicationBase umbracoApplication, ApplicationContext applicationContext)
-        //{
-
-
-        //    contentService = Current.Services.ContentService;
-        //    relationService = Current.Services.RelationService;
-        //    mediaService = Current.Services.MediaService;
-        //}
 
         private void ContentService_Trashing(IContentService sender, MoveEventArgs<IContent> e)
         {
@@ -343,51 +203,7 @@ namespace UWS.Core.ApplicationEvents
              *The logic needs to be removed and it is okay to just check the existence of the relationship directly.
              */
 
-            //if (contentIds.Count() == 0)
-            //{
-            //    //contentService = ApplicationContext.Current.Services.ContentService;
-            //    var rootContent = contentService.GetRootContent();
-            //    contentIds.AddRange(rootContent.Select(x => x.Id));
-            //    foreach (var i in rootContent)
-            //    {
-            //        contentIds.AddRange(contentService.GetDescendants(i.Id).Select(x=> x.Id));
-            //    }
-            //    //contentIds.AddRange(rootContent.Select(x=> contentService.GetDescendants(x.Id)).Select(y => y.))
-
-            //}
-            //if (mediaIds.Count() == 0)
-            //{
-            //    //mediaService = ApplicationContext.Current.Services.MediaService;
-            //    var rootContent = mediaService.GetRootMedia();
-            //    mediaIds.AddRange(rootContent.Select(x=>x.Id));
-            //    foreach (var i in rootContent)
-            //    {
-            //        mediaIds.AddRange(mediaService.GetDescendants(i.Id).Select(x => x.Id));
-            //    }
-            //    //mediaIds.AddRange(mediaService.GetDescendants(-1).Select(x => x.Id));
-            //}
-            //Current.Logger.Info(this.GetType(), string.Format("Checking if parent: {0} and child: {1} are proper content/media items", parentNode, childNode));
-            ////check if the parentNode and childNode are actual content/media items in the website
-            //if ((contentIds.Where(x => x == parentNode).Any() || mediaIds.Where(x => x == parentNode).Any()) && (mediaIds.Where(x => x == childNode).Any() || contentIds.Where(x=> x == childNode).Any()))
-            //{
-            //    Current.Logger.Info(this.GetType(), string.Format("Parent: {0} and child: {1} are proper content/media items. Checking for existing relationships now", parentNode, childNode));
-            //    ////var mediaService = ApplicationContext.Current.Services.RelationService;
-            //    var test = relationService.AreRelated(parentNode, childNode);
-            //    if (test)
-            //    {
-            //        Current.Logger.Info(this.GetType(), string.Format("Relationship between parent: {0} and child: {1} exists", parentNode, childNode));
-            //    }
-            //    else
-            //    {
-            //        Current.Logger.Info(this.GetType(), string.Format("No relationship exists between parent: {0} and child: {1}", parentNode, childNode));
-            //    }
-            //    return test;
-            //}//if not, return true to skip the relationship creating bit
-            //else
-            //{
-            //    Current.Logger.Info(this.GetType(), string.Format("Parent: {0} and child: {1} are not proper content/media items", parentNode, childNode));
-            //    return true;
-            //}
+        
 
             Current.Logger.Info(this.GetType(), string.Format("Checking if parent: {0} and child: {1} are related", parentNode, childNode));
 
@@ -425,11 +241,7 @@ namespace UWS.Core.ApplicationEvents
                 }
                 
 
-                //if (id == null)//check if the item is a content item and not media
-                //{
-                //    typedContent = umbracoHelper.Content(udi);
-                //    id = typedContent?.Id.ToString();
-                //}
+                
             }
             catch (Exception msg)
             {
@@ -442,9 +254,7 @@ namespace UWS.Core.ApplicationEvents
         private IRelationType getRelationType(int relationContentId)
         {
 
-            //var contentService = ApplicationContext.Current.Services.ContentService;
-            //var mediaService = ApplicationContext.Current.Services.RelationService;
-
+            
             var documentToMediaRelationType = relationService.GetRelationTypeByAlias(documentToMediaRelationTypeAlias);
             var documentToDocumentRelationType = relationService.GetRelationTypeByAlias(documentToDocumentRelationTypeAlias);
 
@@ -467,9 +277,7 @@ namespace UWS.Core.ApplicationEvents
 
         private void ContentService_Saved(IContentService sender, SaveEventArgs<IContent> e)
         {
-            //var mediaService = ApplicationContext.Current.Services.RelationService;
-            //var contentService = ApplicationContext.Current.Services.ContentService;
-            //var mediaService = ApplicationContext.Current.Services.MediaService;
+            
             var documentToMediaRelationType = relationService.GetRelationTypeByAlias(documentToMediaRelationTypeAlias);
             var documentToDocumentRelationType = relationService.GetRelationTypeByAlias(documentToDocumentRelationTypeAlias);
 
@@ -521,9 +329,7 @@ namespace UWS.Core.ApplicationEvents
         public void processRelations(Property prop, IContent entity)
         {
 
-            //var mediaService = ApplicationContext.Current.Services.RelationService;
-            //var contentService = ApplicationContext.Current.Services.ContentService;
-            //var mediaService = ApplicationContext.Current.Services.MediaService;
+           
 
             var documentToMediaRelationType = relationService.GetRelationTypeByAlias(documentToMediaRelationTypeAlias);
             var documentToDocumentRelationType = relationService.GetRelationTypeByAlias(documentToDocumentRelationTypeAlias);
@@ -534,53 +340,7 @@ namespace UWS.Core.ApplicationEvents
 
             switch (prop.PropertyType.PropertyEditorAlias)
             {
-                //case "Imulus.UrlPicker":
-                //    {
-                //        var urlModel = JsonConvert.DeserializeObject<List<UrlPicker.Umbraco.Models.UrlPicker>>(prop.GetValue().ToString());
-                //        foreach (var item in urlModel)
-                //        {
-                //            if (item.Type == UrlPicker.Umbraco.Models.UrlPicker.UrlPickerTypes.Content || item.Type == UrlPicker.Umbraco.Models.UrlPicker.UrlPickerTypes.Media)
-                //            {
-                //                IRelationType relationType;
-                //                int relationContentId = 0;
-                //                if (item.Type == UrlPicker.Umbraco.Models.UrlPicker.UrlPickerTypes.Content)
-                //                { relationContentId = item.TypeData.ContentId.GetValueOrDefault(); }
-                //                else if(item.Type == UrlPicker.Umbraco.Models.UrlPicker.UrlPickerTypes.Media)
-                //                { relationContentId = item.TypeData.MediaId.GetValueOrDefault(); }
-
-
-
-                //                if (!checkRelationship(entity.Id, relationContentId))
-                //                {
-                //                    relationType = getRelationType(relationContentId);
-                //                    Current.Logger.Info(this.GetType(), string.Format("Creating relationship between parent: {0} and child: {1}", entity.Id, relationContentId));
-                //                    var relation = new Relation(entity.Id, relationContentId, relationType);
-                //                    relation.Comment = prop.PropertyType.Name;
-                //                    saveRelations(relation);
-                //                }
-                //                else
-                //                {
-                //                    Current.Logger.Info(this.GetType(), string.Format("Modifying existing relationship between parent: {0} and child: {1} to add an extra property alias {2} in the comment", entity.Id, relationContentId, prop.PropertyType.Name));
-                //                    IRelation relation = null;
-                //                    foreach (var _rel in entityRelationsList)
-                //                    {
-                //                        if (_rel.ChildId == relationContentId)
-                //                        {
-                //                            relation = _rel;
-                //                            break;
-                //                        }
-                //                    }
-
-                //                    if (relation != null)
-                //                    {
-                //                        relation.Comment += ", " + prop.PropertyType.Name;
-                //                        saveRelations(relation);
-                //                    }
-                //                }
-                //            }
-                //        }
-                //        break;
-                //    }
+               
                 case Constants.PropertyEditors.Aliases.MediaPicker://obsolete, but still used for some properties in the site
                 case Constants.PropertyEditors.Aliases.ContentPicker:
                 //case Constants.PropertyEditors.ContentPickerAlias://obsolete, but still used for some properties in the site
@@ -818,301 +578,7 @@ namespace UWS.Core.ApplicationEvents
 
 
 
-        //public void processRelationsForArchetypes(ArchetypePropertyModel prop, IContent entity, string propertyType, string fieldAlias)
-        //{
-
-        //    //var mediaService = ApplicationContext.Current.Services.RelationService;
-        //    //var contentService = ApplicationContext.Current.Services.ContentService;
-        //    //var mediaService = ApplicationContext.Current.Services.MediaService;
-        //    var documentToMediaRelationType = relationService.GetRelationTypeByAlias(documentToMediaRelationTypeAlias);
-        //    var documentToDocumentRelationType = relationService.GetRelationTypeByAlias(documentToDocumentRelationTypeAlias);
-
-        //    var entityRelationsList = relationService.GetByParentId(entity.Id);
-
-        //    var propValue = prop.GetValue();
-
-        //    switch (propertyType)
-        //    {
-        //        case "urlpicker":
-        //            {
-        //                var urlModel = JsonConvert.DeserializeObject<List<UrlPicker.Umbraco.Models.UrlPicker>>(prop.GetValue().ToString());
-        //                foreach (var item in urlModel)
-        //                {
-        //                    if (item.Type == UrlPicker.Umbraco.Models.UrlPicker.UrlPickerTypes.Content || item.Type == UrlPicker.Umbraco.Models.UrlPicker.UrlPickerTypes.Media)
-        //                    {
-        //                        IRelationType relationType;
-        //                        int relationContentId = 0;
-        //                        if (item.Type == UrlPicker.Umbraco.Models.UrlPicker.UrlPickerTypes.Content)
-        //                        { relationContentId = item.TypeData.ContentId.GetValueOrDefault(); }
-        //                        else if (item.Type == UrlPicker.Umbraco.Models.UrlPicker.UrlPickerTypes.Media)
-        //                        { relationContentId = item.TypeData.MediaId.GetValueOrDefault(); }
-
-
-
-        //                        if (!checkRelationship(entity.Id, relationContentId))
-        //                        {
-        //                            relationType = getRelationType(relationContentId);
-        //                            Current.Logger.Info(this.GetType(), string.Format("Creating relationship between parent: {0} and child: {1}", entity.Id, relationContentId));
-        //                            var relation = new Relation(entity.Id, relationContentId, relationType);
-        //                            relation.Comment = prop.PropertyType.Name;
-        //                            saveRelations(relation);
-        //                        }
-        //                        else
-        //                        {
-        //                            Current.Logger.Info(this.GetType(), string.Format("Modifying existing relationship between parent: {0} and child: {1} to add an extra property alias {2} in the comment", entity.Id, relationContentId, prop.PropertyType.Name));
-        //                            IRelation relation = null;
-        //                            foreach (var _rel in entityRelationsList)
-        //                            {
-        //                                if (_rel.ChildId == relationContentId)
-        //                                {
-        //                                    relation = _rel;
-        //                                    break;
-        //                                }
-        //                            }
-
-        //                            if (relation != null)
-        //                            {
-        //                                relation.Comment += ", " + prop.PropertyType.Name;
-        //                                saveRelations(relation);
-        //                            }
-        //                        }
-        //                    }
-        //                }
-        //                break;
-        //            }
-        //        case "multinodetreepicker":
-        //        case "contentpicker":
-        //        case "mediapicker":
-        //            {
-        //                var mediaList = propValue.ToString().Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-        //                foreach (var media in mediaList)
-        //                {
-        //                    var _media = media;
-                            
-        //                    if (media != null && media.ToLower().Contains("umb"))
-        //                    {
-        //                        _media = getNodeIdFromUdi(media);
-
-        //                    }
-
-        //                    int relationContentId;
-        //                    if (int.TryParse(_media.ToString(), out relationContentId))
-        //                    {
-        //                        if (!checkRelationship(entity.Id, relationContentId))
-        //                        {
-        //                            var relationType = getRelationType(relationContentId);
-        //                            Current.Logger.Info(this.GetType(), string.Format("Creating relationship between parent: {0} and child: {1}", entity.Id, relationContentId));
-        //                            var relation = new Relation(entity.Id, relationContentId, relationType);
-        //                            relation.Comment = string.Format("{0} > {1}", fieldAlias, prop.PropertyType.Name);
-        //                            saveRelations(relation);
-        //                        }
-        //                        else
-        //                        {
-        //                            Current.Logger.Info(this.GetType(), string.Format("Modifying existing relationship between parent: {0} and child: {1} to add an extra property alias {2} in the comment", entity.Id, relationContentId, prop.PropertyType.Name));
-        //                            IRelation relation = null;
-        //                            foreach (var _rel in entityRelationsList)
-        //                            {
-        //                                if (_rel.ChildId == relationContentId)
-        //                                {
-        //                                    relation = _rel;
-        //                                    break;
-        //                                }
-        //                            }
-
-        //                            if (relation != null)
-        //                            {
-        //                                relation.Comment += ", " + string.Format("{0} > {1}", fieldAlias, prop.PropertyType.Name);
-        //                                saveRelations(relation);
-        //                            }
-        //                        }
-        //                    }
-        //                }
-
-        //                break;
-        //            }
-        //        case Constants.PropertyEditors.MultipleMediaPickerAlias:
-        //            {
-        //                var mediaList = propValue.ToString().Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-
-        //                foreach (var media in mediaList)
-        //                {
-
-        //                    var _media = media;
-
-        //                    if (media != null && media.ToLower().Contains("umb"))
-        //                    {
-        //                        _media = getNodeIdFromUdi(media);
-
-        //                    }
-
-
-        //                    int relationContentId;
-        //                    if (int.TryParse(_media, out relationContentId))
-        //                    {
-        //                        if (!checkRelationship(entity.Id, relationContentId))
-        //                        {
-        //                            var relationType = getRelationType(relationContentId);
-        //                            Current.Logger.Info(this.GetType(), string.Format("Creating relationship between parent: {0} and child: {1}", entity.Id, relationContentId));
-        //                            var relation = new Relation(entity.Id, relationContentId, relationType);
-        //                            relation.Comment = string.Format("{0} > {1}", fieldAlias, prop.PropertyType.Name);
-        //                            saveRelations(relation);
-        //                        }
-        //                        else
-        //                        {
-        //                            Current.Logger.Info(this.GetType(), string.Format("Modifying existing relationship between parent: {0} and child: {1} to add an extra property alias {2} in the comment", entity.Id, relationContentId, prop.PropertyType.Name));
-        //                            IRelation relation = null;
-        //                            foreach (var _rel in entityRelationsList)
-        //                            {
-        //                                if (_rel.ChildId == relationContentId)
-        //                                {
-        //                                    relation = _rel;
-        //                                    break;
-        //                                }
-        //                            }
-
-        //                            if (relation != null)
-        //                            {
-        //                                relation.Comment += ", " + string.Format("{0} > {1}", fieldAlias, prop.PropertyType.Name);
-        //                                saveRelations(relation);
-        //                            }
-        //                        }
-        //                    }
-        //                }
-        //                break;
-        //            }
-
-        //        case "rte":
-        //            {
-        //                var propertyValueAsString = propValue.ToString();
-
-        //                //This is one way to do the media:
-        //                var html = new HtmlDocument();
-        //                html.LoadHtml(propertyValueAsString);
-        //                //var imgTags = html.DocumentNode.FirstChild.SelectNodes(".//img");
-        //                var imgTags = html.DocumentNode.SelectNodes(".//img");
-        //                if (imgTags != null)
-        //                {
-        //                    foreach (var img in imgTags)
-        //                    {
-        //                        //is element
-        //                        if (img.NodeType != HtmlNodeType.Element) continue;
-        //                        var mediaId = img.GetAttributeValue("rel", 0);
-        //                        if (mediaId != 0)
-        //                        {
-        //                            if (!checkRelationship(entity.Id, mediaId))
-        //                            {
-        //                                Current.Logger.Info(this.GetType(), string.Format("Creating relationship between parent: {0} and child: {1}", entity.Id, mediaId));
-        //                                var relation = new Relation(entity.Id, mediaId, documentToMediaRelationType);
-        //                                relation.Comment = string.Format("{0} > {1}", fieldAlias, prop.PropertyType.Name);
-        //                                saveRelations(relation);
-        //                            }
-        //                            else
-        //                            {
-        //                                Current.Logger.Info(this.GetType(), string.Format("Modifying existing relationship between parent: {0} and child: {1} to add an extra property alias {2} in the comment", entity.Id, mediaId, prop.PropertyType.Name));
-        //                                IRelation relation = null;
-        //                                foreach (var _rel in entityRelationsList)
-        //                                {
-        //                                    if (_rel.ChildId == mediaId)
-        //                                    {
-        //                                        relation = _rel;
-        //                                        break;
-        //                                    }
-        //                                }
-
-        //                                if (relation != null)
-        //                                {
-        //                                    relation.Comment += ", " + string.Format("{0} > {1}", fieldAlias, prop.PropertyType.Name);
-        //                                    saveRelations(relation);
-        //                                }
-        //                            }
-        //                        }
-        //                        else if (!img.GetAttributeValue("data-udi", "def").Equals("def"))
-        //                        {
-        //                            var umbUdi = img.GetAttributeValue("data-udi", "def");
-        //                            if (umbUdi != null && umbUdi.Contains("umb"))
-        //                            {
-        //                                var _mediaId = getNodeIdFromUdi(umbUdi);
-        //                                if (_mediaId!=null && !checkRelationship(entity.Id, int.Parse(_mediaId)))
-        //                                {
-        //                                    Current.Logger.Info(this.GetType(), string.Format("Creating relationship between parent: {0} and child: {1}", entity.Id, _mediaId));
-        //                                    var relation = new Relation(entity.Id, int.Parse(_mediaId), documentToMediaRelationType);
-        //                                    relation.Comment = string.Format("{0} > {1}", fieldAlias, prop.PropertyType.Name);
-        //                                    saveRelations(relation);
-        //                                }
-        //                                else if(_mediaId!=null)
-        //                                {
-        //                                    Current.Logger.Info(this.GetType(), string.Format("Modifying existing relationship between parent: {0} and child: {1} to add an extra property alias {2} in the comment", entity.Id, _mediaId, prop.PropertyType.Name));
-        //                                    IRelation relation = null;
-        //                                    foreach (var _rel in entityRelationsList)
-        //                                    {
-        //                                        if (_rel.ChildId == int.Parse(_mediaId))
-        //                                        {
-        //                                            relation = _rel;
-        //                                            break;
-        //                                        }
-        //                                    }
-
-        //                                    if (relation != null)
-        //                                    {
-        //                                        relation.Comment += ", " + string.Format("{0} > {1}", fieldAlias, prop.PropertyType.Name);
-        //                                        saveRelations(relation);
-        //                                    }
-        //                                }
-
-        //                                else if (_mediaId == null)
-        //                                {
-        //                                    Current.Logger.Info(this.GetType(), string.Format("Cannot create relationship between parent: {0} and child: {1} as media id for the umb UDI is null. Property in comment: {2}", entity.Id, umbUdi, prop.PropertyType.Name));
-        //                                }
-        //                            }
-        //                        }
-        //                    }
-        //                }
-
-        //                //This is how you can parse locallinks
-        //                var tags = LocalLinkPattern.Matches(propertyValueAsString);
-        //                foreach (Match tag in tags)
-        //                {
-        //                    if (tag.Groups.Count > 0)
-        //                    {
-        //                        var id = tag.Groups[1].Value;
-        //                        int intId;
-        //                        if (int.TryParse(id, out intId))
-        //                        {
-        //                            if (!checkRelationship(entity.Id, intId))
-        //                            {
-        //                                Current.Logger.Info(this.GetType(), string.Format("Creating relationship between parent: {0} and child: {1}", entity.Id, intId));
-        //                                var relation = new Relation(entity.Id, intId, documentToDocumentRelationType);
-        //                                relation.Comment = string.Format("{0} > {1}", fieldAlias, prop.PropertyType.Name);
-        //                                saveRelations(relation);
-        //                            }
-        //                            else
-        //                            {
-        //                                Current.Logger.Info(this.GetType(), string.Format("Modifying existing relationship between parent: {0} and child: {1} to add an extra property alias {2} in the comment", entity.Id, intId, prop.PropertyType.Name));
-        //                                IRelation relation = null;
-        //                                foreach (var _rel in entityRelationsList)
-        //                                {
-        //                                    if (_rel.ChildId == intId)
-        //                                    {
-        //                                        relation = _rel;
-        //                                        break;
-        //                                    }
-        //                                }
-
-        //                                if (relation != null)
-        //                                {
-        //                                    relation.Comment += ", " + string.Format("{0} > {1}", fieldAlias, prop.PropertyType.Name);
-        //                                    saveRelations(relation);
-        //                                }
-        //                            }
-        //                        }
-        //                    }
-        //                }
-
-        //                break;
-        //            }
-
-        //    }
-        //}
+       
 
 
         private void saveRelations(IRelation relation)
@@ -1138,72 +604,7 @@ namespace UWS.Core.ApplicationEvents
 
 
 
-        //public void OnApplicationStarting(UmbracoApplicationBase umbracoApplication, ApplicationContext applicationContext)
-        //{
-        //    //throw new NotImplementedException();
-        //}
-
-        //public void processArchetypeBlocks(Property prop, IContent entity, ArchetypePropertyModel archetypeProp = null)
-        //{
-        //    try
-        //    {
-        //        var archetype = JsonConvert.DeserializeObject<ArchetypeModel>(archetypeProp == null ? prop.GetValue().ToString() : archetypeprop.GetValue().ToString());
-
-        //        var fieldSet = new List<ArchetypeFieldsetModel>();
-        //        fieldSet = archetype.Fieldsets.ToList();
-
-        //        foreach (var field in fieldSet)
-        //        {
-        //            try
-        //            {
-        //                foreach (var _prop in field.Properties)
-        //                {
-        //                    try
-        //                    {
-        //                        var propValue = _prop.GetValue();
-
-        //                        if (propValue == null) continue;
-
-        //                        var is_propArchetype = false;
-        //                        try
-        //                        {
-        //                            var tempmodel = JsonConvert.DeserializeObject<ArchetypeModel>(_prop.GetValue().ToString());
-        //                            is_propArchetype = true;
-        //                            processArchetypeBlocks(prop, entity, archetypeProp: _prop);
-        //                        }
-        //                        catch (Exception msg)
-        //                        {
-        //                            is_propArchetype = false;
-        //                        }
-
-        //                        if (getMediaContentPropertyAliasesInArchetypes().Where(x => x.Key.Equals(_prop.PropertyType.Name)).Any() && !is_propArchetype)
-        //                        {
-        //                            var propertyType = getMediaContentPropertyAliasesInArchetypes().Where(x => x.Key.Equals(_prop.PropertyType.Name)).FirstOrDefault().Value;
-        //                            var archetypeRoute = string.Empty;
-        //                            if (archetypeProp != null && archetypeprop.PropertyType.Name != null)
-        //                            {
-        //                                archetypeRoute = string.Format("{0} > ", archetypeprop.PropertyType.Name);
-        //                            }
-        //                            processRelationsForArchetypes(_prop, entity, propertyType, string.Format("{0} > ", prop.PropertyType.Name) + archetypeRoute + field.Alias);
-        //                        }
-        //                    }
-        //                    catch (Exception msg)
-        //                    {
-        //                        Current.Logger.Error(this.GetType(), "\nException while processing property: " + _prop.PropertyType.Name + " entity id: " + entity.Id, msg);
-        //                    }
-        //                }
-        //            }
-        //            catch (Exception msg)
-        //            {
-        //                Current.Logger.Error(this.GetType(), "\nException while processing field: " + field.Alias + " entity id: " + entity.Id, msg);
-        //            }
-        //        }
-        //    }
-        //    catch (Exception msg)
-        //    {
-        //        Current.Logger.Error(this.GetType(), "\nException while processing archetypeprop/prop " + archetypeProp == null ? prop.PropertyType.Name : archetypeprop.PropertyType.Name + ". Entity id: " + entity.Id, msg);
-        //    }
-        //}
+        
 
         public static UmbracoContext EnsureUmbracoContext()
         {
@@ -1213,16 +614,7 @@ namespace UWS.Core.ApplicationEvents
             }
             var context = new HttpContextWrapper(new HttpContext(new SimpleWorkerRequest("/", string.Empty, new StringWriter())));
 
-            //return UmbracoContext.EnsureContext(
-            //    context,
-            //    UmbracoContext.Current, /*find a way to include publishedSnapshotService*/ Umbraco.Web.Composing.Current.PublishedSnapshotService,
-            //    new WebSecurity(context, Current.Services.UserService, Current.Configs.GetConfig<IGlobalSettings>()),
-            //    Current.Configs.GetConfig<IUmbracoSettingsSection>(),
-            //    /*Another way to construct the config manually() => { Configs config = null; Umbraco.Core.ConfigsExtensions.AddCoreConfigs(config); return config.GetConfig<IUmbracoSettingsSection>(); }*/
-            //    /*UrlProviderResolver.Current.Providers,*/
-            //    Current.UrlSegmentProviders,
-            //    Current.Configs.GetConfig<IGlobalSettings>(), Current.VariationContextAccessor,
-            //    false);
+           
 
             return UmbracoContext.EnsureContext(
                Current.Factory.GetInstance<IUmbracoContextAccessor>(),
